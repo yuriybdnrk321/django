@@ -5,6 +5,12 @@ from django.urls import reverse
 
 from django.db import models
 
+
+# class Product(models.Model):
+#     title = models.CharField(max_length=256, blank=False,
+#                              verbose_name="Product Title")
+#     price = models.IntegerField(blank=False, default=0,
+#                                 verbose_name="Product Price")
 class Category(models.Model):
     category = models.CharField(u'Категорія',
         max_length=250, help_text=u'Максимум 250 символів')
@@ -20,9 +26,9 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         try:
-            url = reverse('articles-category-list', kwargs={'slug': self.slug})
+            url = reverse('articles-category-list', kwargs={'slug': self.category})
         except:
-            url = '/'
+            url = "/"
         return url
 
 class Article(models.Model):
@@ -34,8 +40,11 @@ class Article(models.Model):
 
     slug = models.SlugField(u'Слаг', unique_for_date='pub_date')
 
-    main_page = models.BooleanField(u'Головна', default=False, help_text=u'Показувати на головній сторінці')
-    category = models.ForeignKey(Category, related_name='articles', blank=True, null=True, verbose_name=u'Категорія', on_delete=models.CASCADE)
+    main_page = models.BooleanField(u'Головна', default=False,
+                                    help_text=u'Показувати на головній сторінці')
+    category = models.ForeignKey(Category,
+                                 related_name='articles', blank=True, null=True,
+                                 verbose_name=u'Категорія', on_delete=models.CASCADE)
 
     objects = models.Manager()
 
