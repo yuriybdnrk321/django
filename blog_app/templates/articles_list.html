@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-     <meta charset="UTF-8">
-     <title>Публікації</title>
-    </head>
-    <body>
-    <a href="{% url 'home' %}">
-     <h3>Повернутись до головної сторінки</h3>
-     </a>
-     Публікації <br/>
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% spaceless %}
+
+    <div class="to-home">
+        <a href="{% url 'home' %}">
+           <h4>Повернутись на головну</h4>
+         </a>
+    </div>
      {% if category %} {{ category }} {% endif %}
      {% for item in items %}
-     <div class="articles-row">
+     <div class="articles-row article-list__item">
         <a href="{{ item.get_absolute_url }}">
          <h4>{{ item.title }}</h4>
         </a>
@@ -27,5 +26,5 @@
          <div class='clearfix'></div>
      </div>
      {% endfor %}
-    </body>
-</html>
+{% endspaceless %}
+{% endblock %}

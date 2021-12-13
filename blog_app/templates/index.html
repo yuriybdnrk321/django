@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html lang=”uk”>
-    <head>
-     <title>Blog</title>
-     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    </head>
-    <body>
-    Категорії
-    {% if categories %}
-    {% for item in categories %}
-    <div>
-         <a href="{{ item.get_absolute_url }}">
-            <h4>{{ item.category }}</h4>
-         </a>
-    </div>
-    {% endfor %}
-    {% endif %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% spaceless %}
+
+
     {% if articles %}
     {% for item in articles %}
-    <div>
+    <div class="article-list__item">
          <a href="{{ item.get_absolute_url }}">
              <h4>{{ item.title }}</h4>
          </a>
@@ -30,8 +19,5 @@
     </div>
     {% endfor %}
     {% endif %}
-     <a href="{% url 'articles-list' %}">
-     <h4>Всі публікації</h4>
-     </a>
-    </body>
-</html>
+{% endspaceless %}
+{% endblock %}

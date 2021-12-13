@@ -14,4 +14,3 @@ class CategoryModelTest(TestCase):
 
         self.assertEquals(category.get_absolute_url(), '/articles/category/Innovations')
 
-        
